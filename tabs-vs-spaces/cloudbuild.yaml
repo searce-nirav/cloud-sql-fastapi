@@ -16,6 +16,7 @@ steps:
   - 'us-central1-docker.pkg.dev/eighth-vehicle-375706/cloud-sql-fastapi/test:$COMMIT_SHA'
   - '--region'
   - 'us-central1'
+  - --allow-unauthenticated
   secretEnv:
     - DB_NAME
     - DB_PASS
