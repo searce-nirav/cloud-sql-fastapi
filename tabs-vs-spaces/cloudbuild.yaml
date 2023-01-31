@@ -1,23 +1,41 @@
- steps:
- # Build the container image
- - name: 'gcr.io/cloud-builders/docker'
-   args: ['build', '-t', 'us-central1-docker.pkg.dev/eighth-vehicle-375706/cloud-sql-fastapi/test:$COMMIT_SHA', 'tabs-vs-spaces/']
- # Push the container image to Container Registry
- - name: 'gcr.io/cloud-builders/docker'
-   args: ['push', 'us-central1-docker.pkg.dev/eighth-vehicle-375706/cloud-sql-fastapi/test:$COMMIT_SHA']
- # Deploy container image to Cloud Run
- - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-   entrypoint: gcloud
-   args:
-   - 'run'
-   - 'deploy'
-   - 'cloud-sql-fastapi'
-   - '--image'
-   - 'us-central1-docker.pkg.dev/eighth-vehicle-375706/cloud-sql-fastapi/test:$COMMIT_SHA'
-   - '--region'
-   - 'us-central1'
- images:
- - 'us-central1-docker.pkg.dev/eighth-vehicle-375706/cloud-sql-fastapi/test:$COMMIT_SHA'
+steps:
+# Build the container image
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'us-central1-docker.pkg.dev/eighth-vehicle-375706/cloud-sql-fastapi/test:$COMMIT_SHA', 'tabs-vs-spaces/']
+# Push the container image to Container Registry
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'us-central1-docker.pkg.dev/eighth-vehicle-375706/cloud-sql-fastapi/test:$COMMIT_SHA']
+# Deploy container image to Cloud Run
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  entrypoint: gcloud
+  args:
+  - 'run'
+  - 'deploy'
+  - 'cloud-sql-fastapi'
+  - '--image'
+  - 'us-central1-docker.pkg.dev/eighth-vehicle-375706/cloud-sql-fastapi/test:$COMMIT_SHA'
+  - '--region'
+  - 'us-central1'
+  secretEnv:
+    - DB_NAME
+    - DB_PASS
+    - DB_USER
+    - GOOGLE_APPLICATION_CREDENTIALS
+    - INSTANCE_CONNECTION_NAME
+availableSecrets:
+  secretManager:
+  - versionName: projects/871578364011/secrets/DB_NAME/versions/1
+    env: DB_NAME
+  - versionName: projects/871578364011/secrets/DB_PASS/versions/1
+    env: DB_PASS
+  - versionName: projects/871578364011/secrets/DB_USER/versions/1
+    env: DB_USER
+  - versionName: projects/871578364011/secrets/GOOGLE_APPLICATION_CREDENTIALS/versions/1
+    env: GOOGLE_APPLICATION_CREDENTIALS 
+  - versionName: projects/871578364011/secrets/INSTANCE_CONNECTION_NAME/versions/1
+    env: INSTANCE_CONNECTION_NAME 
+images:
+- 'us-central1-docker.pkg.dev/eighth-vehicle-375706/cloud-sql-fastapi/test:$COMMIT_SHA'
 
- options:
-   logging: CLOUD_LOGGING_ONLY
+options:
+  logging: CLOUD_LOGGING_ONLY
