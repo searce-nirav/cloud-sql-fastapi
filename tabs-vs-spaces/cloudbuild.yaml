@@ -18,3 +18,6 @@
    - 'us-central1'
  images:
  - 'gcr.io/eighth-vehicle-375706/cloud-sql-fastapi:$COMMIT_SHA'
+
+ options:
+   logging: CLOUD_LOGGING_ONLY
