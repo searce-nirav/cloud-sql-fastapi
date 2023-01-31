@@ -1,7 +1,7 @@
  steps:
  # Build the container image
  - name: 'gcr.io/cloud-builders/docker'
-   args: ['build', '-t', 'gcr.io/eighth-vehicle-375706/cloud-sql-fastapi:$COMMIT_SHA', 'tabs-vs-spaces/Dockerfile']
+   args: ['build', '-t', 'gcr.io/eighth-vehicle-375706/cloud-sql-fastapi:$COMMIT_SHA', 'tabs-vs-spaces/']
  # Push the container image to Container Registry
  - name: 'gcr.io/cloud-builders/docker'
    args: ['push', 'gcr.io/eighth-vehicle-375706/cloud-sql-fastapi:$COMMIT_SHA']
