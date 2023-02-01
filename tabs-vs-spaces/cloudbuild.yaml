@@ -20,7 +20,7 @@ steps:
     gcloud run deploy cloud-sql-fastapi \
     --image us-central1-docker.pkg.dev/eighth-vehicle-375706/cloud-sql-fastapi/test:$COMMIT_SHA \
     --region us-central1 \
-    --allow-unquthenticated \
+    --allow-unauthenticated \
     --update-secrets=DB_NAME=DB_NAME/versions/1 \
     --update-secrets=DB_USER=DB_USER/versions/1 \
     --update-secrets=DB_PASS=DB_PASS/versions/1 \
