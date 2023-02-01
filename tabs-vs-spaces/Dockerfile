@@ -16,5 +16,5 @@ RUN pip install --no-cache-dir -r requirements.txt
 # webserver, with one worker process and 8 threads.
 # For environments with multiple CPU cores, increase the number of workers
 # to be equal to the cores available.
-CMD exec gunicorn --bind :$PORT --workers 1 --worker-class uvicorn.workers.UvicornWorker --threads 8 app.main:app
+CMD exec gunicorn --bind :$PORT --workers 1 --timeout 30 --worker-class uvicorn.workers.UvicornWorker --threads 8 app.main:app
 
