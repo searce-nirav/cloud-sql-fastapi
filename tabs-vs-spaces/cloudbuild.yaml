@@ -1,7 +1,17 @@
 steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args:
+    - '-c'
+    - >-
+      docker pull us-central1-docker.pkg.dev/eighth-vehicle-375706/cloud-sql-fastapi/test:latest
+      || exit 0
 # Build the container image
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'us-central1-docker.pkg.dev/eighth-vehicle-375706/cloud-sql-fastapi/test:$COMMIT_SHA', 'tabs-vs-spaces/']
+  args: 
+    - build
+    - -t 
+    - 'us-central1-docker.pkg.dev/eighth-vehicle-375706/cloud-sql-fastapi/test:$COMMIT_SHA'
+    - 'tabs-vs-spaces/'
 # Push the container image to Container Registry
 - name: 'gcr.io/cloud-builders/docker'
   args: ['push', 'us-central1-docker.pkg.dev/eighth-vehicle-375706/cloud-sql-fastapi/test:$COMMIT_SHA']
