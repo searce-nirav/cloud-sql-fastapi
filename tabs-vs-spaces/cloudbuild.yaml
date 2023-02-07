@@ -1,6 +1,6 @@
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['pull', 'us-central1-docker.pkg.dev/eighth-vehicle-375706/cloud-sql-fastapi/test:latest']
+  args: ['pull', 'us-central1-docker.pkg.dev/eighth-vehicle-375706/cloud-sql-fastapi/test']
 # Build the container image
 - name: 'gcr.io/kaniko-project/executor:latest'
   args:
@@ -8,11 +8,11 @@ steps:
     - --cache-ttl=6h
     - --context=tabs-vs-spaces
     - --dockerfile=tabs-vs-spaces/Dockerfile
-    - --destination=us-central1-docker.pkg.dev/eighth-vehicle-375706/cloud-sql-fastapi/test:$COMMIT_SHA
+    - --destination=us-central1-docker.pkg.dev/eighth-vehicle-375706/cloud-sql-fastapi/test
 
 # Push the container image to Container Registry
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'us-central1-docker.pkg.dev/eighth-vehicle-375706/cloud-sql-fastapi/test:$COMMIT_SHA']
+  args: ['push', 'us-central1-docker.pkg.dev/eighth-vehicle-375706/cloud-sql-fastapi/test']
 # Deploy container image to Cloud Run
 - name: 'gcr.io/cloud-builders/gcloud'
   entrypoint: /bin/sh
