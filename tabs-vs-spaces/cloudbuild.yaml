@@ -6,6 +6,7 @@ steps:
   args:
     - --cache=true
     - --cache-ttl=6h
+    - --dockerfile=tabs-vs-spaces/
     - --destination=us-central1-docker.pkg.dev/eighth-vehicle-375706/cloud-sql-fastapi/test:$COMMIT_SHA
 
 # Push the container image to Container Registry
