@@ -55,7 +55,7 @@ availableSecrets:
   - versionName: projects/871578364011/secrets/INSTANCE_CONNECTION_NAME/versions/1
     env: INSTANCE_CONNECTION_NAME 
 images:
-- 'us-central1-docker.pkg.dev/eighth-vehicle-375706/cloud-sql-fastapi/test:$COMMIT_SHA'
+- 'us-central1-docker.pkg.dev/eighth-vehicle-375706/cloud-sql-fastapi/test
 
 options:
   logging: CLOUD_LOGGING_ONLY
