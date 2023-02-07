@@ -26,7 +26,7 @@ steps:
   - -c
   - |
     gcloud run deploy cloud-sql-fastapi \
-    --image us-central1-docker.pkg.dev/eighth-vehicle-375706/cloud-sql-fastapi/test:$COMMIT_SHA \
+    --image us-central1-docker.pkg.dev/eighth-vehicle-375706/cloud-sql-fastapi/test \
     --region us-central1 \
     --allow-unauthenticated \
     --update-secrets=DB_NAME=DB_NAME:latest \
