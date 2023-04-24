@@ -33,7 +33,12 @@ steps:
     --update-secrets=DB_USER=DB_USER:latest \
     --update-secrets=DB_PASS=DB_PASS:latest \
     --update-secrets=GOOGLE_APPLICATION_CREDENTIALS=GOOGLE_APPLICATION_CREDENTIALS:latest \
-    --update-secrets=INSTANCE_CONNECTION_NAME=INSTANCE_CONNECTION_NAME:latest
+    --update-secrets=INSTANCE_CONNECTION_NAME=INSTANCE_CONNECTION_NAME:latest \
+    if [[ "$BRANCH_NAME" == "main" ]]
+    then
+    --no-cpu-throttling
+    fi
+  
   #- 'run'
   #- 'deploy'
   #- 'cloud-sql-fastapi'
