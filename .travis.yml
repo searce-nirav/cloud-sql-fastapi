@@ -1,0 +1,28 @@
+arch:
+- amd64
+
+language: python
+
+os: linux
+
+dist: facal
+
+services:
+- docker
+
+before_install:
+  - sudo apt-get update
+  - docker build -t test .
+
+script:
+- echo "Hello-World"
+- cd expense-tracker
+- mvn test
+
+notifications:
+  email:
+    recipients:
+    - yugjaysoni007@gmail.com
+
+    on_success: never
+    on_failure: always
